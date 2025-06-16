@@ -83,8 +83,7 @@ O Carona App é uma plataforma de caronas solidárias que conecta motoristas com
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <URL_DO_REPOSITORIO_GIT>
-    cd <NOME_DA_PASTA_DO_PROJETO>
+    git clone (https://github.com/nicolasuesu/AEP-5semestre-2entrega.git)
     ```
 
 2.  **Compile e Execute o backend (Spring Boot):**
