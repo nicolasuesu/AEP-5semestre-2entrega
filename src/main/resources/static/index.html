@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protótipo Carona Solidária</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="antialiased text-gray-800">
+    <nav aria-label="Menu de Acessibilidade e Suporte" class="bg-gray-800 text-white text-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center h-9 space-x-6">
+            <a href="#" class="hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded px-1 py-2">Acessibilidade</a>
+            <a href="#" class="hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded px-1 py-2">Ajuda</a>
+            <a href="#" class="hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded px-1 py-2">Contato</a>
+        </div>
+    </nav>
+
+    <header class="bg-white shadow-md sticky top-9 z-40">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-emerald-700">Carona App</h1>
+                    </div>
+                    <nav class="hidden md:block ml-10" aria-label="Main navigation">
+                        <div class="flex items-baseline space-x-4">
+                            <a href="#buscar" class="nav-link px-3 py-2 text-sm font-medium"><i class="fas fa-search mr-2" aria-hidden="true"></i>Buscar Caronas</a>
+                            <a href="#oferecer" class="nav-link px-3 py-2 text-sm font-medium"><i class="fas fa-plus-circle mr-2" aria-hidden="true"></i>Oferecer Carona</a>
+                            <a href="#minhas" class="nav-link px-3 py-2 text-sm font-medium"><i class="fas fa-list-alt mr-2" aria-hidden="true"></i>Minhas Caronas</a>
+                        </div>
+                    </nav>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                     <a href="#" class="text-gray-600 hover:text-emerald-600" aria-label="Messages"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-emerald-600">Login</a>
+                    <a href="#" class="bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-700">Cadastre-se</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-emerald-600 hover:bg-gray-100" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden pb-3" role="navigation" aria-label="Mobile navigation">
+                <a href="#buscar" class="nav-link block px-3 py-2 rounded-md text-base font-medium"><i class="fas fa-search mr-2" aria-hidden="true"></i>Buscar Caronas</a>
+                <a href="#oferecer" class="nav-link block px-3 py-2 rounded-md text-base font-medium"><i class="fas fa-plus-circle mr-2" aria-hidden="true"></i>Oferecer Carona</a>
+                <a href="#minhas" class="nav-link block px-3 py-2 rounded-md text-base font-medium"><i class="fas fa-list-alt mr-2" aria-hidden="true"></i>Minhas Caronas</a>
+                <div class="border-t border-gray-200 mt-3 pt-3">
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-emerald-600" aria-label="Messages"><i class="fas fa-envelope mr-2" aria-hidden="true"></i>Mensagens</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-emerald-600"><i class="fas fa-sign-in-alt mr-2" aria-hidden="true"></i>Login</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-emerald-600"><i class="fas fa-user-plus mr-2" aria-hidden="true"></i>Cadastre-se</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        
+        <section id="buscar" class="view" role="region" aria-labelledby="buscar-heading">
+            <div class="max-w-7xl mx-auto">
+                <div class="lg:flex lg:space-x-8">
+                    
+                    <div class="lg:w-2/3">
+                        <div class="card p-6 md:p-8">
+                            <h2 id="buscar-heading" class="text-2xl font-bold mb-6 text-center"><i class="fas fa-search mr-2" aria-hidden="true"></i>Encontre sua carona solidária</h2>
+                            <form id="search-form">
+                                <div id="search-form-feedback" class="mb-4 text-sm" aria-live="polite"></div> 
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label for="origem" class="block text-sm font-medium text-gray-700">Origem</label>
+                                        <input type="text" id="origem" placeholder="Ex: Unicesumar" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                                    </div>
+                                    <div>
+                                        <label for="destino" class="block text-sm font-medium text-gray-700">Destino</label>
+                                        <input type="text" id="destino" placeholder="Ex: Shopping Avenida Center" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <label for="data" class="block text-sm font-medium text-gray-700">Data</label>
+                                    <input type="date" id="data" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                                </div>
+                                <button type="submit" class="w-full btn-primary font-bold py-3 px-4 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-search mr-2"></i> Buscar
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <div id="search-results" class="mt-6 hidden">
+                            <h3 class="text-xl font-semibold mb-4 text-gray-800">Caronas Encontradas</h3>
+                            <div id="search-results-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Resultados da busca serão inseridos aqui -->
+                                <div class="card bg-white p-4 rounded-lg shadow">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/48x48/E0E7FF/4F46E5?text=BB" class="rounded-full mr-3" alt="Foto do motorista Bruno B.">
+                                            <div>
+                                                 <p class="font-semibold text-base">Bruno B.</p>
+                                                 <p class="text-xs text-gray-600"><i class="fas fa-map-marker-alt mr-1 text-emerald-600"></i>Unicesumar <i class="fas fa-long-arrow-alt-right mx-1"></i> Shopping Avenida</p>
+                                                 <p class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i> Hoje, 18:30</p>
+                                            </div>
+                                         </div>
+                                         <div class="text-right">
+                                            <p class="font-bold text-md text-emerald-600">R$ 5,00</p>
+                                            <p class="text-xs text-gray-500">2 vagas</p>
+                                         </div>
+                                     </div>
+                                </div>
+                                
+                                <div class="card bg-white p-4 rounded-lg shadow">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/48x48/FEE2E2/B91C1C?text=EK" class="rounded-full mr-3" alt="Foto do motorista Enzo K.">
+                                            <div>
+                                                 <p class="font-semibold text-base">Enzo K.</p>
+                                                 <p class="text-xs text-gray-600"><i class="fas fa-map-marker-alt mr-1 text-emerald-600"></i>UEM <i class="fas fa-long-arrow-alt-right mx-1"></i> Catedral</p>
+                                                 <p class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i> Amanhã, 08:00</p>
+                                            </div>
+                                         </div>
+                                         <div class="text-right">
+                                            <p class="font-bold text-md text-emerald-600">R$ 4,00</p>
+                                            <p class="text-xs text-gray-500">1 vaga</p>
+                                         </div>
+                                     </div>
+                                </div>
+                                
+                                <div class="card bg-white p-4 rounded-lg shadow">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/48x48/A5B4FC/312E81?text=LC" class="rounded-full mr-3" alt="Foto do motorista Laura C.">
+                                            <div>
+                                                 <p class="font-semibold text-base">Laura C.</p>
+                                                 <p class="text-xs text-gray-600"><i class="fas fa-map-marker-alt mr-1 text-emerald-600"></i>Centro Cívico <i class="fas fa-long-arrow-alt-right mx-1"></i> Unicesumar</p>
+                                                 <p class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i> Hoje, 07:30</p>
+                                            </div>
+                                         </div>
+                                         <div class="text-right">
+                                            <p class="font-bold text-md text-emerald-600">R$ 6,00</p>
+                                            <p class="text-xs text-gray-500">3 vagas</p>
+                                         </div>
+                                     </div>
+                                </div>
+                                
+                                <div class="card bg-white p-4 rounded-lg shadow">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/48x48/FBCFE8/831843?text=RM" class="rounded-full mr-3" alt="Foto do motorista Rafael M.">
+                                            <div>
+                                                 <p class="font-semibold text-base">Rafael M.</p>
+                                                 <p class="text-xs text-gray-600"><i class="fas fa-map-marker-alt mr-1 text-emerald-600"></i>Shopping Catuaí <i class="fas fa-long-arrow-alt-right mx-1"></i> Aeroporto</p>
+                                                 <p class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i> Amanhã, 14:00</p>
+                                            </div>
+                                         </div>
+                                         <div class="text-right">
+                                            <p class="font-bold text-md text-emerald-600">R$ 10,00</p>
+                                            <p class="text-xs text-gray-500">1 vaga</p>
+                                         </div>
+                                     </div>
+                                </div>
+                                
+                                <div class="card bg-white p-4 rounded-lg shadow">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/48x48/BFDBFE/1E3A8A?text=SA" class="rounded-full mr-3" alt="Foto da motorista Sofia A.">
+                                            <div>
+                                                 <p class="font-semibold text-base">Sofia A.</p>
+                                                 <p class="text-xs text-gray-600"><i class="fas fa-map-marker-alt mr-1 text-emerald-600"></i>Novo Centro <i class="fas fa-long-arrow-alt-right mx-1"></i> UEM</p>
+                                                 <p class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i> Hoje, 12:45</p>
+                                            </div>
+                                         </div>
+                                         <div class="text-right">
+                                            <p class="font-bold text-md text-emerald-600">R$ 4,50</p>
+                                            <p class="text-xs text-gray-500">2 vagas</p>
+                                         </div>
+                                     </div>
+                                </div>
+                                
+                                <div class="card bg-white p-4 rounded-lg shadow">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/48x48/FDE68A/78350F?text=JP" class="rounded-full mr-3" alt="Foto do motorista João P.">
+                                            <div>
+                                                 <p class="font-semibold text-base">João P.</p>
+                                                 <p class="text-xs text-gray-600"><i class="fas fa-map-marker-alt mr-1 text-emerald-600"></i>Estádio Willie Davids <i class="fas fa-long-arrow-alt-right mx-1"></i> Praça da Catedral</p>
+                                                 <p class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i> Depois de Amanhã, 19:00</p>
+                                            </div>
+                                         </div>
+                                         <div class="text-right">
+                                            <p class="font-bold text-md text-emerald-600">R$ 3,00</p>
+                                            <p class="text-xs text-gray-500">3 vagas</p>
+                                         </div>
+                                     </div>
+                                </div>
+                                 
+                                 <div class="card bg-white p-4 rounded-lg shadow">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/48x48/C7D2FE/3730A3?text=CA" class="rounded-full mr-3" alt="Foto da motorista Clara A.">
+                                            <div>
+                                                 <p class="font-semibold text-base">Clara A.</p>
+                                                 <p class="text-xs text-gray-600"><i class="fas fa-map-marker-alt mr-1 text-emerald-600"></i>Rodoviária <i class="fas fa-long-arrow-alt-right mx-1"></i> Zona 5</p>
+                                                 <p class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i> Hoje, 22:00</p>
+                                            </div>
+                                         </div>
+                                         <div class="text-right">
+                                            <p class="font-bold text-md text-emerald-600">R$ 7,00</p>
+                                            <p class="text-xs text-gray-500">1 vaga</p>
+                                         </div>
+                                     </div>
+                                </div>
+                                
+                                <div class="card bg-white p-4 rounded-lg shadow">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/48x48/FECACA/7F1D1D?text=MV" class="rounded-full mr-3" alt="Foto do motorista Marcos V.">
+                                            <div>
+                                                 <p class="font-semibold text-base">Marcos V.</p>
+                                                 <p class="text-xs text-gray-600"><i class="fas fa-map-marker-alt mr-1 text-emerald-600"></i>Parque do Ingá <i class="fas fa-long-arrow-alt-right mx-1"></i> Av. Brasil</p>
+                                                 <p class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i> Amanhã, 06:30</p>
+                                            </div>
+                                         </div>
+                                         <div class="text-right">
+                                            <p class="font-bold text-md text-emerald-600">R$ 5,50</p>
+                                            <p class="text-xs text-gray-500">2 vagas</p>
+                                         </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <aside class="lg:w-1/3 lg:mt-0 mt-12 pt-8 lg:pt-0 border-t lg:border-t-0 lg:border-l border-gray-200 lg:pl-8">
+                        <div class="sticky top-24 space-y-6 z-30">
+                            <section id="quem-somos-buscar" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-3">Quem Somos</h2>
+                                <p class="text-gray-700 leading-relaxed text-sm">
+                                    Somos uma equipe de estudantes apaixonados por tecnologia e inovação, dedicados a criar soluções que melhorem o dia a dia das pessoas em nossa comunidade. O Carona App nasceu da observação das dificuldades de mobilidade urbana e do desejo de promover uma cultura de compartilhamento e sustentabilidade. Acreditamos que, juntos, podemos construir um futuro com menos trânsito, menos poluição e mais conexões humanas.
+                                </p>
+                            </section>
+                
+                            <section id="nosso-objetivo-buscar" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-3">Nosso Objetivo</h2>
+                                <p class="text-gray-700 leading-relaxed text-sm">
+                                    Nosso principal objetivo com o Carona App é facilitar o compartilhamento de caronas de forma segura, eficiente e gratuita. Queremos conectar pessoas que realizam trajetos semelhantes, otimizando o uso de veículos particulares, reduzindo custos de transporte para motoristas e passageiros, e contribuindo para a diminuição do congestionamento e da emissão de poluentes em nossa cidade. Buscamos ser a plataforma de referência para caronas solidárias, promovendo economia, sustentabilidade e um senso de comunidade mais forte.
+                                </p>
+                            </section>
+                
+                            <section id="nossas-metas-buscar" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-3">Nossas Metas</h2>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2 text-sm">
+                                    <li><strong>Curto Prazo (até 6 meses):</strong> Atingir 1.000 usuários ativos na plataforma e facilitar 500 caronas bem-sucedidas. Estabelecer parcerias iniciais com centros universitários locais.</li>
+                                    <li><strong>Médio Prazo (até 1 ano):</strong> Expandir para 5.000 usuários ativos e registrar uma média de 100 caronas diárias. Implementar todas as funcionalidades de segurança planejadas e iniciar a gamificação.</li>
+                                    <li><strong>Longo Prazo (2+ anos):</strong> Ser a principal plataforma de caronas em nossa cidade, com mais de 20.000 usuários. Demonstrar um impacto mensurável na redução de emissões de CO2 e no tráfego local, através de dados coletados. Explorar a expansão para cidades vizinhas e buscar integração com sistemas de transporte público.</li>
+                                </ul>
+                            </section>
+                
+                            <section id="expectativas-futuro-buscar" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-4 text-center">Expectativas para o Futuro</h2>
+                                <div class="space-y-3 accordion-container">
+                                    <div class="border border-gray-200 rounded-md text-sm">
+                                        <div class="accordion-title p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-t-md">
+                                            <h3 class="font-medium text-emerald-700">Adoção e Crescimento</h3>
+                                            <i class="fas fa-chevron-down accordion-icon text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <div class="accordion-content bg-white rounded-b-md px-4">
+                                            <div class="pt-2 pb-4">
+                                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                                    <li><strong>Marketing Direcionado:</strong> Focar em comunidades com alto potencial, como universitários e funcionários de grandes empresas.</li>
+                                                    <li><strong>Incentivos Não-Monetários:</strong> Gamificação com distintivos por contribuições ambientais e reconhecimento para os usuários mais ativos.</li>
+                                                    <li><strong>Parcerias Estratégicas:</strong> Colaborar com universidades, empresas e a Prefeitura para promover a plataforma e criar esquemas de carona corporativa.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border border-gray-200 rounded-md text-sm">
+                                        <div class="accordion-title p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-t-md">
+                                            <h3 class="font-medium text-emerald-700">Confiança e Segurança</h3>
+                                            <i class="fas fa-chevron-down accordion-icon text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <div class="accordion-content bg-white rounded-b-md px-4">
+                                            <div class="pt-2 pb-4">
+                                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                                    <li><strong>Implementação de Segurança:</strong> Tornar obrigatórias funcionalidades como verificação de documentos, sistema de avaliação e botão de emergência.</li>
+                                                    <li><strong>Diretrizes Claras:</strong> Definir regras de uso, processos de resolução de disputas e moderação ativa para manter um ambiente seguro.</li>
+                                                    <li><strong>Opção 'Só Para Mulheres':</strong> Implementar o filtro para aumentar a segurança percebida e a inclusão.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="border border-gray-200 rounded-md text-sm">
+                                        <div class="accordion-title p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-t-md">
+                                            <h3 class="font-medium text-emerald-700">Sustentabilidade do Projeto</h3>
+                                            <i class="fas fa-chevron-down accordion-icon text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <div class="accordion-content bg-white rounded-b-md px-4">
+                                            <div class="pt-2 pb-4">
+                                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                                    <li><strong>Fontes de Financiamento:</strong> Buscar apoio municipal, patrocínios empresariais e subvenções, posicionando a plataforma como um bem público alinhado ao Plano de Mobilidade (PlanMob).</li>
+                                                    <li><strong>Minimização de Custos:</strong> Utilizar tecnologias de código aberto e soluções em nuvem custo-efetivas.</li>
+                                                    <li><strong>Sinergia com o Município:</strong> Dialogar com a Secretaria de Mobilidade Urbana (SEMOB) e oferecer dados anonimizados para ajudar no planejamento urbano.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="oferecer" class="view" role="region" aria-labelledby="oferecer-heading">
+            <div class="max-w-7xl mx-auto">
+                <div class="lg:flex lg:space-x-8">
+                    
+                    <div class="lg:w-2/3">
+                        <div class="card p-6 md:p-8">
+                            <h2 id="oferecer-heading" class="text-2xl font-bold mb-6 text-center"><i class="fas fa-plus-circle mr-2" aria-hidden="true"></i>Oferecer uma carona</h2>
+                            <form id="offer-form">
+                                <div id="offer-form-feedback" class="mb-4 text-sm" aria-live="polite"></div> 
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label for="oferecer-origem" class="block text-sm font-medium text-gray-700">Origem</label>
+                                        <input type="text" id="oferecer-origem" placeholder="Seu ponto de partida" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                                    </div>
+                                    <div>
+                                        <label for="oferecer-destino" class="block text-sm font-medium text-gray-700">Destino</label>
+                                        <input type="text" id="oferecer-destino" placeholder="Seu ponto de chegada" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                    <div>
+                                        <label for="oferecer-data" class="block text-sm font-medium text-gray-700">Data</label>
+                                        <input type="date" id="oferecer-data" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                                    </div>
+                                    <div>
+                                        <label for="oferecer-hora" class="block text-sm font-medium text-gray-700">Hora</label>
+                                        <input type="time" id="oferecer-hora" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                                    </div>
+                                    <div>
+                                        <label for="oferecer-assentos" class="block text-sm font-medium text-gray-700">Assentos</label>
+                                        <input type="number" id="oferecer-assentos" min="1" max="4" value="1" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                                    </div>
+                                </div>
+                                 <div class="mb-6">
+                                    <label for="oferecer-notas" class="block text-sm font-medium text-gray-700">Notas (opcional)</label>
+                                    <textarea id="oferecer-notas" rows="3" placeholder="Ex: aceito apenas bagagem de mão, carro com ar condicionado..." class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500"></textarea>
+                                </div>
+                                <button type="submit" class="w-full btn-primary font-bold py-3 px-4 rounded-lg flex items-center justify-center">
+                                   <i class="fas fa-plus-circle mr-2"></i> Oferecer Carona
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <aside class="lg:w-1/3 lg:mt-0 mt-12 pt-8 lg:pt-0 border-t lg:border-t-0 lg:border-l border-gray-200 lg:pl-8">
+                        <div class="sticky top-24 space-y-6 z-30">
+                            <section id="quem-somos-oferecer" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-3">Quem Somos</h2>
+                                <p class="text-gray-700 leading-relaxed text-sm">
+                                    Somos uma equipe de estudantes apaixonados por tecnologia e inovação, dedicados a criar soluções que melhorem o dia a dia das pessoas em nossa comunidade. O Carona App nasceu da observação das dificuldades de mobilidade urbana e do desejo de promover uma cultura de compartilhamento e sustentabilidade. Acreditamos que, juntos, podemos construir um futuro com menos trânsito, menos poluição e mais conexões humanas.
+                                </p>
+                            </section>
+                
+                            <section id="nosso-objetivo-oferecer" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-3">Nosso Objetivo</h2>
+                                <p class="text-gray-700 leading-relaxed text-sm">
+                                    Nosso principal objetivo com o Carona App é facilitar o compartilhamento de caronas de forma segura, eficiente e gratuita. Queremos conectar pessoas que realizam trajetos semelhantes, otimizando o uso de veículos particulares, reduzindo custos de transporte para motoristas e passageiros, e contribuindo para a diminuição do congestionamento e da emissão de poluentes em nossa cidade. Buscamos ser a plataforma de referência para caronas solidárias, promovendo economia, sustentabilidade e um senso de comunidade mais forte.
+                                </p>
+                            </section>
+                
+                            <section id="nossas-metas-oferecer" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-3">Nossas Metas</h2>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2 text-sm">
+                                    <li><strong>Curto Prazo (até 6 meses):</strong> Atingir 1.000 usuários ativos na plataforma e facilitar 500 caronas bem-sucedidas. Estabelecer parcerias iniciais com centros universitários locais.</li>
+                                    <li><strong>Médio Prazo (até 1 ano):</strong> Expandir para 5.000 usuários ativos e registrar uma média de 100 caronas diárias. Implementar todas as funcionalidades de segurança planejadas e iniciar a gamificação.</li>
+                                    <li><strong>Longo Prazo (2+ anos):</strong> Ser a principal plataforma de caronas em nossa cidade, com mais de 20.000 usuários. Demonstrar um impacto mensurável na redução de emissões de CO2 e no tráfego local, através de dados coletados. Explorar a expansão para cidades vizinhas e buscar integração com sistemas de transporte público.</li>
+                                </ul>
+                            </section>
+                
+                            <section id="expectativas-futuro-oferecer" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-4 text-center">Expectativas para o Futuro</h2>
+                                <div class="space-y-3 accordion-container">
+                                    <div class="border border-gray-200 rounded-md text-sm">
+                                        <div class="accordion-title p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-t-md">
+                                            <h3 class="font-medium text-emerald-700">Adoção e Crescimento</h3>
+                                            <i class="fas fa-chevron-down accordion-icon text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <div class="accordion-content bg-white rounded-b-md px-4">
+                                            <div class="pt-2 pb-4">
+                                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                                    <li><strong>Marketing Direcionado:</strong> Focar em comunidades com alto potencial, como universitários e funcionários de grandes empresas.</li>
+                                                    <li><strong>Incentivos Não-Monetários:</strong> Gamificação com distintivos por contribuições ambientais e reconhecimento para os usuários mais ativos.</li>
+                                                    <li><strong>Parcerias Estratégicas:</strong> Colaborar com universidades, empresas e a Prefeitura para promover a plataforma e criar esquemas de carona corporativa.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border border-gray-200 rounded-md text-sm">
+                                        <div class="accordion-title p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-t-md">
+                                            <h3 class="font-medium text-emerald-700">Confiança e Segurança</h3>
+                                            <i class="fas fa-chevron-down accordion-icon text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <div class="accordion-content bg-white rounded-b-md px-4">
+                                            <div class="pt-2 pb-4">
+                                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                                    <li><strong>Implementação de Segurança:</strong> Tornar obrigatórias funcionalidades como verificação de documentos, sistema de avaliação e botão de emergência.</li>
+                                                    <li><strong>Diretrizes Claras:</strong> Definir regras de uso, processos de resolução de disputas e moderação ativa para manter um ambiente seguro.</li>
+                                                    <li><strong>Opção 'Só Para Mulheres':</strong> Implementar o filtro para aumentar a segurança percebida e a inclusão.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="border border-gray-200 rounded-md text-sm">
+                                        <div class="accordion-title p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-t-md">
+                                            <h3 class="font-medium text-emerald-700">Sustentabilidade do Projeto</h3>
+                                            <i class="fas fa-chevron-down accordion-icon text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <div class="accordion-content bg-white rounded-b-md px-4">
+                                            <div class="pt-2 pb-4">
+                                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                                    <li><strong>Fontes de Financiamento:</strong> Buscar apoio municipal, patrocínios empresariais e subvenções, posicionando a plataforma como um bem público alinhado ao Plano de Mobilidade (PlanMob).</li>
+                                                    <li><strong>Minimização de Custos:</strong> Utilizar tecnologias de código aberto e soluções em nuvem custo-efetivas.</li>
+                                                    <li><strong>Sinergia com o Município:</strong> Dialogar com a Secretaria de Mobilidade Urbana (SEMOB) e oferecer dados anonimizados para ajudar no planejamento urbano.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="minhas" class="view" role="region" aria-labelledby="minhas-heading">
+            <div class="max-w-7xl mx-auto">
+                <div class="lg:flex lg:space-x-8">
+                    
+                    <div class="lg:w-2/3">
+                         <h2 id="minhas-heading" class="text-2xl font-bold mb-6 text-center">Minhas Caronas</h2>
+                        <div class="md:grid md:grid-cols-2 md:gap-8">
+                            <div id="content-passageiro" class="tab-content bg-gray-50 p-4 rounded-lg shadow" role="region" aria-labelledby="minhas-passageiro-heading" tabindex="0">
+                                <h3 id="minhas-passageiro-heading" class="text-xl font-semibold mb-4 text-gray-700">Como Passageiro</h3>
+                                <div id="minhas-caronas-feedback" class="mb-4 text-sm" aria-live="polite"></div>
+                                <div id="minhas-caronas-list" class="space-y-4">
+                                    <!-- Reservas do usuário (passageiro) serão listadas aqui -->
+                                    <p class="text-gray-600">Você ainda não reservou nenhuma carona.</p>
+                                </div>
+                            </div>
+
+                            <div id="content-motorista" class="tab-content bg-gray-50 p-4 rounded-lg shadow mt-8 md:mt-0" role="region" aria-labelledby="minhas-motorista-heading" tabindex="0">
+                                <h3 id="minhas-motorista-heading" class="text-xl font-semibold mb-4 text-gray-700">Como Motorista</h3>
+                                <div id="minhas-oferecidas-feedback" class="mb-4 text-sm" aria-live="polite"></div>
+                                <div id="minhas-oferecidas-list" class="space-y-4">
+                                    <!-- Caronas oferecidas pelo usuário (motorista) serão listadas aqui -->
+                                    <p class="text-gray-600">Você ainda não ofereceu nenhuma carona.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                    <aside class="lg:w-1/3 lg:mt-0 mt-12 pt-8 lg:pt-0 border-t lg:border-t-0 lg:border-l border-gray-200 lg:pl-8">
+                        <div class="sticky top-24 space-y-6 z-30">
+                            <section id="quem-somos-minhas" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-3">Quem Somos</h2>
+                                <p class="text-gray-700 leading-relaxed text-sm">
+                                    Somos uma equipe de estudantes apaixonados por tecnologia e inovação, dedicados a criar soluções que melhorem o dia a dia das pessoas em nossa comunidade. O Carona App nasceu da observação das dificuldades de mobilidade urbana e do desejo de promover uma cultura de compartilhamento e sustentabilidade. Acreditamos que, juntos, podemos construir um futuro com menos trânsito, menos poluição e mais conexões humanas.
+                                </p>
+                            </section>
+                
+                            <section id="nosso-objetivo-minhas" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-3">Nosso Objetivo</h2>
+                                <p class="text-gray-700 leading-relaxed text-sm">
+                                    Nosso principal objetivo com o Carona App é facilitar o compartilhamento de caronas de forma segura, eficiente e gratuita. Queremos conectar pessoas que realizam trajetos semelhantes, otimizando o uso de veículos particulares, reduzindo custos de transporte para motoristas e passageiros, e contribuindo para a diminuição do congestionamento e da emissão de poluentes em nossa cidade. Buscamos ser a plataforma de referência para caronas solidárias, promovendo economia, sustentabilidade e um senso de comunidade mais forte.
+                                </p>
+                            </section>
+                
+                            <section id="nossas-metas-minhas" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-3">Nossas Metas</h2>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2 text-sm">
+                                    <li><strong>Curto Prazo (até 6 meses):</strong> Atingir 1.000 usuários ativos na plataforma e facilitar 500 caronas bem-sucedidas. Estabelecer parcerias iniciais com centros universitários locais.</li>
+                                    <li><strong>Médio Prazo (até 1 ano):</strong> Expandir para 5.000 usuários ativos e registrar uma média de 100 caronas diárias. Implementar todas as funcionalidades de segurança planejadas e iniciar a gamificação.</li>
+                                    <li><strong>Longo Prazo (2+ anos):</strong> Ser a principal plataforma de caronas em nossa cidade, com mais de 20.000 usuários. Demonstrar um impacto mensurável na redução de emissões de CO2 e no tráfego local, através de dados coletados. Explorar a expansão para cidades vizinhas e buscar integração com sistemas de transporte público.</li>
+                                </ul>
+                            </section>
+                
+                            <section id="expectativas-futuro-minhas" class="content-section">
+                                <h2 class="text-xl font-semibold text-emerald-600 mb-4 text-center">Expectativas para o Futuro</h2>
+                                <div class="space-y-3 accordion-container">
+                                    <div class="border border-gray-200 rounded-md text-sm">
+                                        <div class="accordion-title p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-t-md">
+                                            <h3 class="font-medium text-emerald-700">Adoção e Crescimento</h3>
+                                            <i class="fas fa-chevron-down accordion-icon text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <div class="accordion-content bg-white rounded-b-md px-4">
+                                            <div class="pt-2 pb-4">
+                                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                                    <li><strong>Marketing Direcionado:</strong> Focar em comunidades com alto potencial, como universitários e funcionários de grandes empresas.</li>
+                                                    <li><strong>Incentivos Não-Monetários:</strong> Gamificação com distintivos por contribuições ambientais e reconhecimento para os usuários mais ativos.</li>
+                                                    <li><strong>Parcerias Estratégicas:</strong> Colaborar com universidades, empresas e a Prefeitura para promover a plataforma e criar esquemas de carona corporativa.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border border-gray-200 rounded-md text-sm">
+                                        <div class="accordion-title p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-t-md">
+                                            <h3 class="font-medium text-emerald-700">Confiança e Segurança</h3>
+                                            <i class="fas fa-chevron-down accordion-icon text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <div class="accordion-content bg-white rounded-b-md px-4">
+                                            <div class="pt-2 pb-4">
+                                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                                    <li><strong>Implementação de Segurança:</strong> Tornar obrigatórias funcionalidades como verificação de documentos, sistema de avaliação e botão de emergência.</li>
+                                                    <li><strong>Diretrizes Claras:</strong> Definir regras de uso, processos de resolução de disputas e moderação ativa para manter um ambiente seguro.</li>
+                                                    <li><strong>Opção 'Só Para Mulheres':</strong> Implementar o filtro para aumentar a segurança percebida e a inclusão.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="border border-gray-200 rounded-md text-sm">
+                                        <div class="accordion-title p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-t-md">
+                                            <h3 class="font-medium text-emerald-700">Sustentabilidade do Projeto</h3>
+                                            <i class="fas fa-chevron-down accordion-icon text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <div class="accordion-content bg-white rounded-b-md px-4">
+                                            <div class="pt-2 pb-4">
+                                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                                    <li><strong>Fontes de Financiamento:</strong> Buscar apoio municipal, patrocínios empresariais e subvenções, posicionando a plataforma como um bem público alinhado ao Plano de Mobilidade (PlanMob).</li>
+                                                    <li><strong>Minimização de Custos:</strong> Utilizar tecnologias de código aberto e soluções em nuvem custo-efetivas.</li>
+                                                    <li><strong>Sinergia com o Município:</strong> Dialogar com a Secretaria de Mobilidade Urbana (SEMOB) e oferecer dados anonimizados para ajudar no planejamento urbano.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-100 border-t border-gray-200 mt-12 py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm text-gray-600">&copy; 2025 Carona App. Todos os direitos reservados.</p>
+            <nav class="mt-4 space-x-4" aria-label="Footer navigation">
+                <a href="#" class="text-sm text-gray-500 hover:text-emerald-600">Política de Privacidade</a>
+                <a href="#" class="text-sm text-gray-500 hover:text-emerald-600">Termos de Uso</a>
+                <a href="#" class="text-sm text-gray-500 hover:text-emerald-600">Fale Conosco</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

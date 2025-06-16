@@ -1,0 +1,71 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7f6;
+}
+.nav-link {
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+.nav-link.active, .nav-link:hover {
+    color: #059669; 
+    border-bottom-color: #059669;
+}
+.view {
+    display: none;
+}
+.view.active {
+    display: block;
+}
+.btn-primary {
+    background-color: #059669;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #047857;
+}
+.card {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.content-section {
+    background-color: white;
+    border-radius: 0.75rem; 
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); 
+    padding: 1.5rem; 
+    margin-bottom: 2rem; 
+}
+.accordion-title {
+    cursor: pointer;
+    user-select: none; 
+}
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; 
+}
+.accordion-icon {
+    transition: transform 0.3s ease;
+}
+.accordion-title.active .accordion-icon {
+    transform: rotate(180deg);
+}
+a:focus,
+button:focus,
+[role="button"]:focus,
+[role="tab"]:focus {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: #059669; 
+  outline-offset: 1px;   
+}
+a.bg-emerald-600:focus {
+  outline-color: #047857; 
+  outline-offset: 2px;   
+}
